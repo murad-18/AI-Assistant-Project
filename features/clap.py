@@ -104,8 +104,10 @@ def Tester():
     while True:
         kk = tt.listen()
         if "True-Mic" == kk:
-            print("clap detected")
+            print(" ")
+            print(">clap detected : starting Emma")
             break
 
 
 Tester()
+# make changes in line 88, 96,1

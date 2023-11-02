@@ -1,0 +1,64 @@
+You: Hello
+Emma: Hello Sir,how are you?
+You : I am Fine
+Emma: Good to hear that
+
+ 
+You : how are you 
+Emma:I am good as well. Thanks for asking 
+You : what is capital of pakistan 
+Emma:Islamabad 
+You : write a program to print stars witha triangle shape 
+Emma:#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, i, j;
+
+    cout << "Enter the number of rows: ";
+    cin >> n;
+
+    for(i=1; i< 
+You : continue 
+Emma:#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, i, j;
+
+    cout << "Enter the number of rows: ";
+    cin >> n;
+
+    for(i=1; i< 
+You : write the full program, it's unfinshed 
+Emma:#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, i, j;
+
+    cout << "Enter the number of rows: ";
+    cin >> n;
+
+    for(i=1; i< 
+You : python -u "c:\Users\Mujtaba Raza\Desktop\Template For Jarvis\Brain\tempCodeRunnerFile.py" 
+Emma:I don't understand 
+You : how are you doing today 
+Emma:I'm doing well, thank you for asking. How about you? 
+You : write c++ code to add 5numbers 
+Emma:#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, i, j;
+
+    cout << "Enter the number of rows: ";
+    cin >> n;
+
+    for(i=1; i< 
+You : python -u "c:\Users\Mujtaba Raza\Desktop\Template For Jarvis\Brain\AIbrain.py" 
+Emma:I don't understand

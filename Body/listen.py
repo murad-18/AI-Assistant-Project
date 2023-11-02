@@ -1,48 +1,54 @@
-import speech_recognition as sr
-from translate import Translator
+# Hindi or English - Command
+# English
 
-# Listen function
+# Step - 1
+# pip install googletrans==3.1.0a0
 
+# Step - 2
+# Three Functions
+# 1 - Listen Function 
+# 2 - English Translation
+# 3 - Connect
 
-def listen():
-    mcrphn = sr.Recognizer()
+import speech_recognition as sr #pip install speechrecognition
+from googletrans import Translator #pip install googletrans==3.1.0a0
+
+# 1 - Listen : Hindi or English
+
+def Listen():
+
+    r = sr.Recognizer()
 
     with sr.Microphone() as source:
-        print("Listening. . .")
-        mcrphn.pause_threshold = 1
-        audio = mcrphn.listen(source, 0, 9)  # Listening.....
-        # mcrphn.adjust_for_ambient_noise(source, duration=3)
-        # audio = mcrphn.listen(source)
-
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source,0,8) # Listening Mode.....
+    
     try:
-        print("Recognizing. . .")
-        query = mcrphn.recognize_google(audio, language="ur")
-        # print("Query:", query)
-    except sr.UnknownValueError:
-        print("Could not understand audio")
-        return ""
-    except sr.RequestError as e:
-        print(f"Could not request results; {e}")
-        return ""
+        print("Recognizing...")
+        query = r.recognize_google(audio,language="en")
 
+    except:
+        return ""
+    
     query = str(query).lower()
     return query
 
+# 2 - Translation
 
-# Translating function
-def translateUrduToEng(text):
-    line = str(text)
-    translator = Translator(to_lang="en")
-    translation = translator.translate(line)
-    print(f"You: {translation}.")
-    return translation
+def TranslationHinToEng(Text):
+    line = str(Text)
+    translate = Translator()
+    result = translate.translate(line)
+    data = result.text
+    print(f"You : {data}.")
+    return data
 
+# 3 - Connect
 
-# connecting function
-def micConnection():
-    input_text = listen()
-    output_text = translateUrduToEng(input_text)
-    return output_text
+def MicExecution():
+    query = Listen()
+    data = TranslationHinToEng(query)
+    return data
 
-
-micConnection()
+MicExecution()
