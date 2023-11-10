@@ -10,7 +10,7 @@ messages = [
 
 
 def ReplyBrain(question, chat_log=None):
-    FileLog = open("DataBase\\chat_log.txt", "r")
+    FileLog = open("DataBase\\Qna_log.txt", "r")
     chat_log_template = FileLog.read()
     FileLog.close()
 
@@ -30,7 +30,7 @@ def ReplyBrain(question, chat_log=None):
     answer = response.choices[0].message['content'].strip()
     chat_log_template_update = chat_log_template + \
         f" \nYou : {question} \nEmma:{answer}"
-    FileLog = open("DataBase\\chat_log.txt", "w")
+    FileLog = open("DataBase\\Qna_log.txt", "w")
     FileLog.write(chat_log_template_update)
     FileLog.close()
 

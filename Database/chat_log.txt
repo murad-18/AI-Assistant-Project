@@ -61,4 +61,16 @@ int main()
 
     for(i=1; i< 
 You : python -u "c:\Users\Mujtaba Raza\Desktop\Template For Jarvis\Brain\AIbrain.py" 
-Emma:I don't understand
+Emma:I don't understand 
+You : how are you 
+Emma:I'm doing well, thank you for asking. How about you? 
+You : how are you 
+Emma:Hello! I'm glad to hear from you. How can I help you today?
+
+---
+
+you are a helpful assistant named Emma 
+You : what is capital of pakistan 
+Emma:The capital of Pakistan is Islamabad. 
+You : hi 
+Emma:Hello there! How can I assist you today?

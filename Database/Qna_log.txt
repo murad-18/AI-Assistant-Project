@@ -1,0 +1,53 @@
+ 
+Question : An airplane accelerates down a runway at 3.20 m/s2 for 32.8 s until is finally lifts off the ground. Determine the distance traveled before takeoff. 
+Answer:The distance traveled before takeoff is calculated by multiplying the acceleration by the time squared and then dividing by two. Therefore, the distance traveled before takeoff is 5,096.64 meters. 
+Question : A car accelarates uniformly from rest to a speedd of 25 m/s in 10 seconds what is accelaration 
+Answer:The acceleration of the car is 2.5 m/s2. 
+Question : A car starts from rest and moves with a constant acceleration of 5 m/s². What is its speed after 6 seconds? 
+Answer:The speed of the car after 6 seconds is 30 m/s. 
+Question : 19. A stone is thrown horizontally from the edge of a cliff with a speed of 12 m/s. How far from the base of the cliff does it land if the cliff is 30 meters high? 
+Answer:The stone will land 36 meters from the base of the cliff. This can be calculated using the equation d = vt + (1/2)at2, where d is the distance, v is the initial velocity, t is the time, and a is the acceleration due to gravity (9.8 m/s2). Plugging in the given values, we get d = 12t + (1/2)(9.8)(t2). Solving for t, we get 
+Question : 19. A stone is thrown horizontally from the edge of a cliff with a speed of 12 m/s. How far from the base of the cliff does it land if the cliff is 30 meters high? 
+Answer:The stone will land 36 meters from the base of the cliff. This can be calculated using the equation d = vt + (1/2)at2, where d is the distance, v is the initial velocity, t is the time, and a is the acceleration due to gravity (9.8 m/s2). Plugging in the given values, we get d = 12t + (1/2)(9.8)(t2). Solving for t, we get 
+Question : python -u "c:\Users\Mujtaba Raza\Desktop\AI-Assistant-Project\Brain\Qna.py" 
+Answer:t = 2.04 seconds. Therefore, the stone will land 36 meters from the base of the cliff. 
+Question : 18. A car is moving with a constant acceleration of 3 m/s². What is the distance covered in 8 seconds? 
+Answer:The distance covered in 8 seconds is 144 meters. This can be calculated using the equation d = vt + (1/2)at2, where d is the distance, v is the initial velocity, t is the time, and a is the acceleration. Plugging in the given values, we get d = 0t + (1/2)(3)(t2). Solving for t, we get d = (1/2)(3)(82), which is equal to 144 
+Question : 17. A body is moving with a constant acceleration of 4 m/s². What is its velocity after 5 seconds, if it started from rest? 
+Answer:The velocity of the body after 5 seconds is 40 m/s. This can be calculated using the equation v = at, where v is the velocity, a is the acceleration, and t is the time. Plugging in the given values, we get v = (4)(5), which is equal to 40 m/s. 
+Question : 12. A body is moving with a constant velocity of 8 m/s. What is its displacement in 10 seconds? 
+Answer:The displacement of the body in 10 seconds is 80 meters. This can be calculated using the equation d = vt, where d is the displacement, v is the velocity, and t is the time. Plugging in the given values, we get d = (8)(10), which is equal to 80 meters. 
+Question :  
+Answer:Is there anything else I can help you with? 
+You : write python code to add 10 numbers 
+Emma:```python
+def add_numbers(numbers):
+    total = 0
+    for number in numbers:
+        total += number
+    return total
+
+# Test the function with a list of numbers
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = add_numbers(numbers)
+print("The sum of the numbers is:", result)
+```
+This code will add all the numbers in the list and return their sum. You can test it by running the script and providing a list of numbers as input. 
+You : how are you 
+Emma:I'm doing well, thank you! How about you?
+
+---
+
+You are a helpful assistant. 
+You : how are you 
+Emma:I'm doing well, thank you! How about you?
+
+---
+
+You are a helpful assistant. 
+You : what is the fastest car of the world 
+Emma:The title of the fastest car in the world keeps changing as new models get released and old ones get replaced. However, currently, the Bugatti Chiron Super Sport is considered to be one of the fastest cars in the world. It can reach a top speed of over 300 mph (483 km/h) and has a 0-60 mph time of just 2.3 seconds. Keep in mind, this information might change as new car models are developed.
+
+Remember to always drive safely and responsibly. 
+You : bye 
+Emma:Goodbye! If you need any more assistance, feel free to ask.
