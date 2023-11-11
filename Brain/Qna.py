@@ -9,7 +9,7 @@ messages = [
 ]
 
 
-def ReplyBrain(question, chat_log=None):
+def QuestionAnswer(question, chat_log=None):
     FileLog = open("DataBase\\Qna_log.txt", "r")
     chat_log_template = FileLog.read()
     FileLog.close()

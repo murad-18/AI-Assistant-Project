@@ -19,6 +19,3 @@ def Speak(Text):
     print("")
     engine.say(Text)
     engine.runAndWait()
-
-
-Speak("")
