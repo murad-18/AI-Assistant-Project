@@ -23,7 +23,18 @@ import os
 from pynput.keyboard import Key, Controller
 import random
 from time import sleep
-
+import pywhatkit
+import pyttsx3
+import datetime
+import speech_recognition
+import webbrowser
+from bs4 import BeautifulSoup
+from time import sleep
+import os
+from datetime import timedelta
+from datetime import datetime
+from plyer import notification
+from pygame import mixer
 keyboard = Controller()
 
 
@@ -287,6 +298,60 @@ def searchWikipedia(query):
         speak(Results)
 
 
+def game_play():
+    speak("Lets Play ROCK PAPER SCISSORS !!")
+    print("LETS PLAYYYYYYYYYYYYYY")
+    i = 0
+    Me_score = 0
+    Com_score = 0
+    while (i < 5):
+        choose = ("rock", "paper", "scissors")  # Tuple
+        com_choose = random.choice(choose)
+        query = takeCommand().lower()
+        if (query == "rock"):
+            if (com_choose == "rock"):
+                speak("ROCK")
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+            elif (com_choose == "paper"):
+                speak("paper")
+                Com_score += 1
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+            else:
+                speak("Scissors")
+                Me_score += 1
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+
+        elif (query == "paper"):
+            if (com_choose == "rock"):
+                speak("ROCK")
+                Me_score += 1
+                print(f"Score:- ME :- {Me_score+1} : COM :- {Com_score}")
+
+            elif (com_choose == "paper"):
+                speak("paper")
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+            else:
+                speak("Scissors")
+                Com_score += 1
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+
+        elif (query == "scissors" or query == "scissor"):
+            if (com_choose == "rock"):
+                speak("ROCK")
+                Com_score += 1
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+            elif (com_choose == "paper"):
+                speak("paper")
+                Me_score += 1
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+            else:
+                speak("Scissors")
+                print(f"Score:- ME :- {Me_score} : COM :- {Com_score}")
+        i += 1
+
+    print(f"FINAL SCORE :- ME :- {Me_score} : COM :- {Com_score}")
+
+
 def main():
     speak("Hello! I am Emma. How can I assist you today?")
 
@@ -340,7 +405,7 @@ def main():
         elif "play spotify" in query:
             spotify_play()
         elif "music" in query:
-            speak("Playing your favourite songs, sir")
+            speak("Playing your favorite songs, sir")
             a = (1, 2, 3)
             b = random.choice(a)
             if b == 1:
@@ -353,9 +418,78 @@ def main():
                 webbrowser.open(
                     "https://youtu.be/K86IxKir8do?si=DOtDHWrQcaEv_N1L")
         elif "news" in query:
-
             latestnews()
+        elif "shutdown system" in query:
+            speak("Are You sure you want to shutdown")
+            shutdown = input("Do you wish to shutdown your computer? (yes/no)")
+            if shutdown == "yes":
+                os.system("shutdown /s /t 1")
+            elif shutdown == "no":
+                break
+        elif "schedule my day" in query:
+            tasks = []  # Empty list
+            speak("Do you want to clear old tasks (Plz speak YES or NO)")
+            query = takeCommand().lower()
+            if "yes" in query:
+                file = open("DataBase\\task.txt", "w")
+                file.write(f"")
+                file.close()
+                no_tasks = int(input("Enter the no. of tasks :- "))
+                i = 0
+                for i in range(no_tasks):
+                    tasks.append(input("Enter the task :- "))
+                    file = open("DataBase\\task.txt", "a")
+                    file.write(f"{i}. {tasks[i]}\n")
+                    file.close()
+            elif "no" in query:
+                i = 0
+                no_tasks = int(input("Enter the no. of tasks :- "))
+                for i in range(no_tasks):
+                    tasks.append(input("Enter the task :- "))
+                    file = open("DataBase\\task.txt", "a")
+                    file.write(f"{i}. {tasks[i]}\n")
+                    file.close()
+
+        elif "show my schedule" in query:
+            file = open("DataBase\\task.txt", "r")
+            content = file.read()
+            file.close()
+            mixer.init()
+            mixer.music.load("notification.mp3")
+            mixer.music.play()
+            notification.notify(
+                title="My schedule :-",
+                message=content,
+                timeout=15)
+        elif "open" in query:
+            query = query.replace("open", "")
+            query = query.replace("jarvis", "")
+            pyautogui.press("super")
+            pyautogui.typewrite(query)
+            pyautogui.sleep(2)
+            pyautogui.press("enter")
+
+        elif "play a game" in query:
+            game_play()
+        elif "screenshot" in query:
+            import pyautogui  # pip install pyautogui
+            im = pyautogui.screenshot()
+            im.save("ss.jpg")
+
+        elif "click my photo" in query:
+            pyautogui.press("super")
+            pyautogui.typewrite("camera")
+            pyautogui.press("enter")
+            pyautogui.sleep(2)
+            speak("SMILE")
+            pyautogui.press("enter")
 
 
 if __name__ == "__main__":
+    main()
+
+
+if __name__ == "__main__":
+    # Your main code here
+
     main()
