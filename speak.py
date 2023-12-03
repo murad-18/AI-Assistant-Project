@@ -55,4 +55,4 @@ def speak2(text):
     play(audio)
 
 
-speak2("My name is Emma, how are you?")
+# speak2("My name is Emma, how are you?")

@@ -1,5 +1,6 @@
 from speak import speak, speak2
 import json
+from word2number import w2n
 import elevenlabs
 import requests
 from bs4 import BeautifulSoup
@@ -72,50 +73,42 @@ def openappweb(query):
                 os.system(f"start {dictapp[app]}")
 
 
+def close_tabs(query):
+    # Try to extract a spoken number first
+    try:
+        spoken_number = ''.join(
+            filter(lambda x: x.isalpha() or x.isspace(), query))
+        number = w2n.word_to_num(spoken_number)
+    except ValueError:
+        pass
+
+    # If spoken number extraction fails, try to extract numeric digits
+    try:
+        numeric_digits = int(''.join(filter(str.isdigit, query)))
+        number = numeric_digits
+    except ValueError:
+        print("No valid spoken number found in the query.")
+    # Close tabs based on the extracted number
+    for _ in range(number):
+        pyautogui.hotkey("ctrl", "w")
+        sleep(0.5)
+    # Speak the result
+    speak("All tabs closed")
+
+
+# close_tabs("close twenty tabs")
+
+
 def closeappweb(query):
     speak("Closing,sir")
-    if "one tab" in query or "1 tab" in query:
-        pyautogui.hotkey("ctrl", "w")
-        speak("All tabs closed")
-    elif "2 tab" in query:
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        speak("All tabs closed")
-    elif "3 tab" in query:
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        speak("All tabs closed")
-
-    elif "4 tab" in query:
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        speak("All tabs closed")
-    elif "5 tab" in query:
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        sleep(0.5)
-        pyautogui.hotkey("ctrl", "w")
-        speak("All tabs closed")
-
-    else:
-        keys = list(dictapp.keys())
-        for app in keys:
-            if app in query:
-                os.system(f"taskkill /f /im {dictapp[app]}.exe")
+    keys = list(dictapp.keys())
+    for app in keys:
+        if app in query:
+            os.system(f"taskkill /f /im {dictapp[app]}.exe")
+            break
+        else:
+            close_tabs(query)
+            break
 
 
 def get_current_time():
@@ -138,6 +131,7 @@ def takecommand():
         return ""
 
     query = str(query).lower()
+    print("You Said :", query)
     return query
 
 
@@ -373,5 +367,8 @@ def main():
                     latestnews()
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
+print("Available microphones:")
+for i, microphone_name in enumerate(sr.Microphone.list_microphone_names()):
+    print(f"{i}: {microphone_name}")
