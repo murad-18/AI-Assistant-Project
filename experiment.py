@@ -13,6 +13,9 @@ import speech_recognition as sr
 import pywhatkit
 import datetime
 import pyttsx3
+from pydub.playback import play
+from pydub import AudioSegment
+import io
 import os
 import pyautogui
 import webbrowser
@@ -138,11 +141,29 @@ def get_current_time():
 
 
 def speak(request):
-    audio = elevenlabs.generate(
-        text=request,
-        voice="Bella"
-    )
-    elevenlabs.play(audio)
+    CHUNK_SIZE = 1024
+
+    url = "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL"
+
+    headers = {
+        "Accept": "audio/mpeg",
+        "Content-Type": "application/json",
+        "xi-api-key": "68f959ba9e9822d9c6ad5f92b584bec4"
+    }
+
+    data = {
+        "text": """ Born and raised in the charming south,
+        I can add a touch of sweet southern hospitality
+        to your audiobooks and podcasts """,
+        "model_id": "eleven_monolingual_v1",
+        "voice_settings": {
+            "stability": 0.75,
+            "similarity_boost": 0.75
+        }
+    }
+    response = requests.post(url, json=data, headers=headers)
+    audio = AudioSegment.from_file(io.BytesIO(response.content), format="mp3")
+    play(audio)
 
 
 def takecommand():
@@ -297,7 +318,7 @@ def spotify_play():
     speak("music played")
 
 
-def replaceWords():
+def replaceWords(query):
     replaceable = ["Emma", "emma", "youtube search", "google search", "wikipedia search",
                    "Open", "open youtube", "open google", "open wikipedia", "search on youtube", "search on google", "search on wikipedia", "youtube", "google", "wikipedia", "and search", "search"]
     for word in replaceable:
@@ -307,10 +328,7 @@ def replaceWords():
 def searchYoutube(query):
     if "youtube" in query:
         speak("This is what I found for your search!")
-        replaceable = ["Emma", "emma", "youtube search",
-                       "Open", "open youtube", "search on youtube", "youtube", "Youtube", "and search", "Search"]
-        for word in replaceable:
-            query = query.replace(word, "")
+        replaceWords(query)
         try:
             web = "https://www.youtube.com/results?search_query=" + query
             subprocess.Popen(["start", "chrome", web], shell=True)
@@ -323,9 +341,7 @@ def searchYoutube(query):
 def searchWikipedia(query):
     if "wikipedia" in query:
         speak("Searching from wikipedia....")
-        query = query.replace("wikipedia", "")
-        query = query.replace("search wikipedia", "")
-        query = query.replace("Emma", "")
+        replaceWords(query)
         Results = wikipedia.summary(query, sentences=2)
         speak("According to wikipedia..")
         print(Results)
@@ -416,6 +432,10 @@ def main():
                 elif "news" in query:
 
                     latestnews()
+        if "exit all":
+            speak("Goodbye Sir, I am shutting down, have a good day")
+            break
 
-# if __name__ == "__main__":
-#     main()
+
+if __name__ == "__main__":
+    main()

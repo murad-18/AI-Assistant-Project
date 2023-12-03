@@ -19,10 +19,10 @@ def Listen():
     return query
 
 
-def MicExecution():
-    query = Listen()
-    print(query)
-    return query
+# def MicExecution():
+#     query = Listen()
+#     print(query)
+#     return query
 
 
-MicExecution()
+# MicExecution()
