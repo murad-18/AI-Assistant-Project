@@ -1,2 +1,2 @@
- # if "google" in query:
-        #     searchGoogle(query)
+__ == "__main__":
+    main()

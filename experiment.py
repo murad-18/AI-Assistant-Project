@@ -1,3 +1,4 @@
+from speak import speak, speak2
 import json
 import elevenlabs
 import requests
@@ -45,29 +46,11 @@ def volumedown():
         sleep(0.1)
 
 
-# engine = pyttsx3.init("sapi5")
-# voices = engine.getProperty("voices")
-# engine.setProperty("voice", voices[0].id)
-# engine.setProperty("rate", 200)
-
-
 def alarm(query):
     timehere = open("Alarmtext.txt", "a")
     timehere.write(query)
     timehere.close()
     os.startfile("alarm.py")
-
-
-# def speak(audio):
-#     engine.say(audio)
-#     engine.runAndWait()
-
-
-# def alarm(query):
-#     timehere = open("Alarmtext.txt", "a")
-#     timehere.write(query)
-#     timehere.close()
-#     os.startfile("alarm.py")
 
 
 dictapp = {"commandprompt": "cmd", "paint": "paint", "word": "winword",
@@ -140,32 +123,6 @@ def get_current_time():
     speak(f"Sir, the time is {current_time}")
 
 
-def speak(request):
-    CHUNK_SIZE = 1024
-
-    url = "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL"
-
-    headers = {
-        "Accept": "audio/mpeg",
-        "Content-Type": "application/json",
-        "xi-api-key": "68f959ba9e9822d9c6ad5f92b584bec4"
-    }
-
-    data = {
-        "text": """ Born and raised in the charming south,
-        I can add a touch of sweet southern hospitality
-        to your audiobooks and podcasts """,
-        "model_id": "eleven_monolingual_v1",
-        "voice_settings": {
-            "stability": 0.75,
-            "similarity_boost": 0.75
-        }
-    }
-    response = requests.post(url, json=data, headers=headers)
-    audio = AudioSegment.from_file(io.BytesIO(response.content), format="mp3")
-    play(audio)
-
-
 def takecommand():
     r = sr.Recognizer()
 
@@ -184,21 +141,10 @@ def takecommand():
     return query
 
 
-# query = "open google and search who is elon musk"
-# replaceable = ["emma", "google search",
-#                "open google", "search on google", "google", "and search", "search"]
-# for word in replaceable:
-#     query = query.replace(word, "")
-# print(query)
-
-
 def searchGoogle(query):
     if "google" in query:
         import wikipedia as googleScrap
-        replaceable = ["Emma", "emma", "google search",
-                       "Open", "open google", "search on google", "google", "Google", "and search", "Search"]
-        for word in replaceable:
-            query = query.replace(word, "")
+        query = replaceWords(query)
         speak("This is what I found on Google")
 
         try:
@@ -208,18 +154,6 @@ def searchGoogle(query):
 
         except:
             speak("Sorry Sir, No speakable output available")
-
-# def get_weather(city: str, query_type: str):
-#     search = f"{query_type} in {city}"
-#     url = f"https://www.google.com/search?q={search}"
-#     r  = requests.get(url)
-#     data = BeautifulSoup(r.text,"html.parser")
-#     result = data.find("div", class_ = "BNeawe").text
-#     speak(f"current {search} is {result}")
-
-# city = input("Enter the city: ")
-# query_type = input("Enter the query type (temperature or weather): ")
-# get_weather(city, query_type)
 
 
 def latestnews():
@@ -323,16 +257,18 @@ def replaceWords(query):
                    "Open", "open youtube", "open google", "open wikipedia", "search on youtube", "search on google", "search on wikipedia", "youtube", "google", "wikipedia", "and search", "search"]
     for word in replaceable:
         query = query.replace(word, "")
+    return query
 
 
 def searchYoutube(query):
     if "youtube" in query:
         speak("This is what I found for your search!")
-        replaceWords(query)
+        query = replaceWords(query)
+        print(query)
         try:
             web = "https://www.youtube.com/results?search_query=" + query
             subprocess.Popen(["start", "chrome", web], shell=True)
-            pywhatkit.playonyt(query)
+            # pywhatkit.playonyt(query)
             speak("Here is your search, Sir")
         except:
             speak("Sorry Sir, No searchable output found!")
@@ -365,7 +301,10 @@ def main():
     queries = ["google", "youtube", "wikipedia", "temperature", "time", ]
     while True:
         query = takecommand()
-        if "wake up" in query:
+        if "exit all" in query:
+            speak("Goodbye Sir, I am shutting down, have a good day")
+            break
+        elif "wake up" in query:
             greet()
             while True:
                 query = takecommand()
@@ -432,9 +371,6 @@ def main():
                 elif "news" in query:
 
                     latestnews()
-        if "exit all":
-            speak("Goodbye Sir, I am shutting down, have a good day")
-            break
 
 
 if __name__ == "__main__":
