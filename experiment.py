@@ -8,28 +8,19 @@ from bs4 import BeautifulSoup
 import subprocess
 import wikipedia.exceptions
 import webbrowser
-import speech_recognition
-import pyttsx3
 import pywhatkit
 import wikipedia
 import speech_recognition as sr
-import pywhatkit
-import datetime
-import pyttsx3
 from pydub.playback import play
 from pydub import AudioSegment
 import io
 import os
 import pyautogui
-import webbrowser
 import pyttsx3
 from time import sleep
-import pyttsx3
 import datetime
-import os
 from pynput.keyboard import Key, Controller
 import random
-from time import sleep
 
 keyboard = Controller()
 
@@ -355,7 +346,6 @@ def main():
                         webbrowser.open(
                             "https://youtu.be/K86IxKir8do?si=DOtDHWrQcaEv_N1L")
                 elif "news" in query:
-
                     latestnews()
 
 
