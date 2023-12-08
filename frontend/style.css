@@ -1,0 +1,93 @@
+/* Style for the entire body of the HTML document */
+body {
+
+    background-color: black;
+    overflow-x: hidden;              
+    overflow-y: hidden; 
+
+}
+
+/* Style for the square container */
+.square {
+
+    position: relative; /* Set position to relative for absolute positioning of child elements */
+    width: 400px; /* Set width of the square */
+
+    height: 400px; /* Set height of the square */
+    display: flex; /* Use flexbox for centering child elements */
+
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+
+}
+
+/* Style for the first child span element */
+.square span:nth-child(1) {
+
+    position: absolute; /* Set position to absolute for absolute positioning within the square */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+
+    width: 100%; /* Take up the full width of the square */
+    height: 100%; /* Take up the full height of the square */
+
+    background-image: radial-gradient(#6b72ff00 50%, #000dff3b 40%); /* Set radial gradient background */
+    box-shadow: 00 50px rgb(25, 0, 255), inset 00 50px rgb(25, 0, 255); /* Apply box shadow */
+
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; /* Set border radius using percentages */
+    transition: 0.5s; /* Set transition duration */
+
+    animation: animate1 6s linear infinite; /* Apply animation */
+}
+/* Style for the second child span element */
+/* Style for the second child span element */
+square span:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#6b72ff00 50%, #000dff3b 40%);
+    box-shadow: 0 0 50px rgb(25, 0, 255), inset 0 0 50px rgb(25, 0, 255);
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    transition: 0.5s;
+    animation: animate2 4s linear infinite;
+}
+
+/* Style for the third child span element */
+square span:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#6b72ff00 50%, #000dff3b 40%);
+    box-shadow: 0 0 50px rgb(25, 0, 255), inset 0 0 50px rgb(25, 0, 255);
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    transition: 0.5s;
+    animation: animate3 8s linear infinite;
+}
+@keyframes animate1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes animate2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes animate3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

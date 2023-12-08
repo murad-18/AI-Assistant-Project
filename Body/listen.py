@@ -1,4 +1,5 @@
 import speech_recognition as sr
+import eel
 
 
 def Listen():
@@ -19,10 +20,10 @@ def Listen():
     return query
 
 
-def MicExecution():
-    query = Listen()
+@eel.expose
+def takecommand():
+    query = Listen()  # Assuming Listen is a valid function
     print(query)
     return query
-
-
-MicExecution()
+    eel.DispalyMessage(query)
+    eel.ShowHood()
