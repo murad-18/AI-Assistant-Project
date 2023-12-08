@@ -1,4 +1,5 @@
 from speak import speak, speak2
+from alarm import callAlarm
 import json
 from word2number import w2n
 import elevenlabs
@@ -45,13 +46,6 @@ def volumedown():
         keyboard.press(Key.media_volume_down)
         keyboard.release(Key.media_volume_down)
         sleep(0.1)
-
-
-def alarm(query):
-    timehere = open("Alarmtext.txt", "a")
-    timehere.write(query)
-    timehere.close()
-    os.startfile("alarm.py")
 
 
 dictapp = {"commandprompt": "cmd", "paint": "paint", "word": "winword",
@@ -325,11 +319,9 @@ def main():
                 elif "close" in query:
                     closeappweb(query)
                 elif "set an alarm" in query:
-                    print("input time example:- 10 and 10 and 10")
-                    speak("Set the time")
-                    a = input("Please tell the time :- ")
-                    alarm(a)
-                    speak("Done, sir")
+                    speak(
+                        "Kindly provide me the time, for example you can say : set an alarm for 7:29 PM")
+                    callAlarm()
                 elif "volume up" in query:
                     speak("Turning volume up, sir")
                     volumeup()
@@ -367,8 +359,5 @@ def main():
                     latestnews()
 
 
-# if __name__ == "__main__":
-#     main()
-print("Available microphones:")
-for i, microphone_name in enumerate(sr.Microphone.list_microphone_names()):
-    print(f"{i}: {microphone_name}")
+if __name__ == "__main__":
+    main()
